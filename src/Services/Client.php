@@ -3,10 +3,10 @@
 namespace KFoobar\Fortnox\Services;
 
 use Illuminate\Http\Client\Response;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use KFoobar\Fortnox\Exceptions\FortnoxException;
+use Illuminate\Support\Facades\Redis;
 use KFoobar\Fortnox\Interfaces\ClientInterface;
+use KFoobar\Fortnox\Exceptions\FortnoxException;
 
 class Client implements ClientInterface
 {
@@ -161,9 +161,11 @@ class Client implements ClientInterface
      */
     protected function getAccessToken(): ?string
     {
-        return Cache::remember('fortnox-access-token', 3500, function () {
-            return $this->refreshAccessToken();
-        });
+        $refreshedToken = $this->refreshAccessToken();
+        Redis::set('fortnox-access-token', $refreshedToken);
+        return $refreshedToken;
+
+
     }
 
     /**
@@ -175,8 +177,10 @@ class Client implements ClientInterface
      */
     protected function getRefreshToken(): string
     {
-        if (Cache::has('fortnox-refresh-token')) {
-            return Cache::get('fortnox-refresh-token');
+        $storedRefreshToken = Redis::get('fortnox-refresh-token');
+
+        if ($storedRefreshToken) {
+            return $storedRefreshToken;
         }
 
         if (!empty(config('fortnox.refresh_token'))) {
@@ -225,7 +229,7 @@ class Client implements ClientInterface
             throw new FortnoxException('Failed to retrieve refresh token from response.');
         }
 
-        Cache::put('fortnox-refresh-token', $response->json('refresh_token'), 2160000); // 25 days
+        Redis::set('fortnox-refresh-token', $response->json('refresh_token'), 'EX', 2160000); // 25 days
 
         return $response->json('access_token');
     }

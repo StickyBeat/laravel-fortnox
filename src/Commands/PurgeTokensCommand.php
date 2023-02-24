@@ -3,7 +3,7 @@
 namespace KFoobar\Fortnox\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class PurgeTokensCommand extends Command
 {
@@ -35,8 +35,9 @@ class PurgeTokensCommand extends Command
         }
 
         try {
-            Cache::forget('fortnox-access-token');
-            Cache::forget('fortnox-refresh-token');
+            Redis::del('fortnox-access-token');
+            Redis::del('fortnox-refresh-token');
+
         } catch (\Exception) {
             $this->components->error('Failed to cached tokens!');
 

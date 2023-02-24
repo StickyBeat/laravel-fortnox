@@ -3,7 +3,7 @@
 namespace KFoobar\Fortnox\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class DisplayTokensCommand extends Command
 {
@@ -29,11 +29,11 @@ class DisplayTokensCommand extends Command
     public function handle()
     {
         $this->components->info(
-            'Access token: ' . Cache::get('fortnox-access-token', 'Missing')
+            'Access token: ' . Redis::get('fortnox-access-token')
         );
 
         $this->components->info(
-            'Refresh token: ' . Cache::get('fortnox-refresh-token', 'Missing')
+            'Refresh token: ' . Redis::get('fortnox-refresh-token')
         );
 
         return Command::SUCCESS;
