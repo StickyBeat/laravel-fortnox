@@ -1,7 +1,12 @@
 {
-    "name": "kfoobar/laravel-fortnox",
+    "name": "stickybeat/laravel-fortnox",
     "description": "Fortnox API Client for Laravel",
-    "keywords": ["laravel", "fortnox", "bookkeep", "api"],
+    "keywords": [
+        "laravel",
+        "fortnox",
+        "bookkeep",
+        "api"
+    ],
     "license": "MIT",
     "type": "project",
     "require": {
