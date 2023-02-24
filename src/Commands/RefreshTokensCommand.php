@@ -29,9 +29,9 @@ class RefreshTokensCommand extends Command
     public function handle(Client $client)
     {
         try {
-            $client->get('ping');
-        } catch (\Exception) {
-            $this->components->error('Failed to refresh tokens!');
+            $client->get('companyinformation');
+        } catch (\Exception $e) {
+            $this->components->error('Failed to refresh tokens! ' . $e->getMessage());
 
             return Command::FAILURE;
         }

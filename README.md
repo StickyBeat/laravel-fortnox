@@ -52,6 +52,8 @@ You can renew your tokens with the following command:
 php artisan fortnox:refresh
 ```
 
+You must make sure to have scope `companyinformation` enabled since this endpoint is used when refreshing tokens
+
 _Both the access token and the refresh token are stored in your application's cache.
 Keep this in mind when you purge the cache or changes cache driver._
 
