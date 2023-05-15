@@ -2,25 +2,26 @@
 
 namespace KFoobar\Fortnox\Services;
 
+use KFoobar\Fortnox\Services\Client;
+use KFoobar\Fortnox\Resources\Unit\Units;
+use KFoobar\Fortnox\Resources\Inbox\Inboxes;
 use KFoobar\Fortnox\Resources\Account\Accounts;
-use KFoobar\Fortnox\Resources\CostCenter\CostCenters;
-use KFoobar\Fortnox\Resources\Currency\Currencies;
-use KFoobar\Fortnox\Resources\Customer\Customers;
-use KFoobar\Fortnox\Resources\FinancialYear\FinancialYears;
-use KFoobar\Fortnox\Resources\Invoice\InvoiceAccruals;
-use KFoobar\Fortnox\Resources\Invoice\InvoicePayments;
 use KFoobar\Fortnox\Resources\Invoice\Invoices;
 use KFoobar\Fortnox\Resources\Price\PriceLists;
 use KFoobar\Fortnox\Resources\Project\Projects;
-use KFoobar\Fortnox\Resources\Supplier\SupplierInvoices;
+use KFoobar\Fortnox\Resources\Voucher\Vouchers;
+use KFoobar\Fortnox\Resources\Customer\Customers;
 use KFoobar\Fortnox\Resources\Supplier\Suppliers;
+use KFoobar\Fortnox\Resources\Currency\Currencies;
+use KFoobar\Fortnox\Resources\Terms\TermsOfPayments;
+use KFoobar\Fortnox\Resources\Voucher\VoucherSeries;
+use KFoobar\Fortnox\Resources\CostCenter\CostCenters;
+use KFoobar\Fortnox\Resources\Invoice\InvoiceAccruals;
+use KFoobar\Fortnox\Resources\Invoice\InvoicePayments;
 use KFoobar\Fortnox\Resources\Template\PrintTemplates;
 use KFoobar\Fortnox\Resources\Terms\TermsOfDeliveries;
-use KFoobar\Fortnox\Resources\Terms\TermsOfPayments;
-use KFoobar\Fortnox\Resources\Unit\Units;
-use KFoobar\Fortnox\Resources\Voucher\VoucherSeries;
-use KFoobar\Fortnox\Resources\Voucher\Vouchers;
-use KFoobar\Fortnox\Services\Client;
+use KFoobar\Fortnox\Resources\Supplier\SupplierInvoices;
+use KFoobar\Fortnox\Resources\FinancialYear\FinancialYears;
 
 class Fortnox
 {
