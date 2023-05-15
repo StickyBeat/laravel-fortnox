@@ -2,6 +2,7 @@
 
 namespace KFoobar\Fortnox\Resources\Inbox;
 
+use Illuminate\Support\Facades\Log;
 use KFoobar\Fortnox\Traits\HasDelete;
 use KFoobar\Fortnox\Traits\HasRetrieve;
 use KFoobar\Fortnox\Interfaces\ClientInterface;
@@ -37,6 +38,8 @@ class Inboxes implements ResourceInterface
         if (!file_exists($file)) {
             throw new \Exception('File does not exist');
         }
+
+        Log::debug($file);
 
         $endpoint = sprintf('%s?path=%s', $this->endpoint, $path);
 
