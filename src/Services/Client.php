@@ -2,6 +2,7 @@
 
 namespace KFoobar\Fortnox\Services;
 
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redis;
@@ -102,7 +103,13 @@ class Client implements ClientInterface
 
     public function attach(string $endpoint, string $file, string $fileName): mixed  {
 
+        Log::debug($this->client->baseUrl);
+
         $response = $this->client->attach('File', file_get_contents($file), $fileName)->post($endpoint);
+
+        if ($response->failed()) {
+            $this->catchError($response);
+        }
 
         return $response;
     }
