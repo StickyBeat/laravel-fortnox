@@ -30,7 +30,7 @@
         "laravel": {
             "providers": [
                 "KFoobar\\Fortnox\\FortnoxServiceProvider",
-                "KFoobar\\Fortnox\\FileAttachmentsServiceProvider"
+                "KFoobar\\Fortnox\\FileAttachmentServiceProvider"
             ],
             "aliases": {
                 "Fortnox": "KFoobar\\Fortnox\\Facades\\Fortnox",
