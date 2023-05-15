@@ -100,6 +100,12 @@ class Client implements ClientInterface
         return $response;
     }
 
+    public function attach(string $endpoint, string $file, string $fileName): ClientInterface  {
+        $this->client->attach('File', file_get_contents($file), $fileName);
+
+        return $this;
+    }
+
     /**
      * Catch given error message from Fortnox.
      *
