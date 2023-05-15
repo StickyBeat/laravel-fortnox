@@ -179,7 +179,7 @@ class Client implements ClientInterface
     {
         $storedRefreshToken = Redis::get('fortnox-refresh-token');
 
-        if ($storedRefreshToken) {
+        if (!empty($storedRefreshToken) && strlen($storedRefreshToken) > 2) {
             return $storedRefreshToken;
         }
 

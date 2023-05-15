@@ -29,10 +29,12 @@
     "extra": {
         "laravel": {
             "providers": [
-                "KFoobar\\Fortnox\\FortnoxServiceProvider"
+                "KFoobar\\Fortnox\\FortnoxServiceProvider",
+                "KFoobar\\Fortnox\\FileAttachmentsServiceProvider"
             ],
             "aliases": {
-                "Fortnox": "KFoobar\\Fortnox\\Facades\\Fortnox"
+                "Fortnox": "KFoobar\\Fortnox\\Facades\\Fortnox",
+                "FortnoxFileAttachments": "KFoobar\\Fortnox\\Facades\\FileAttachments"
             }
         }
     }

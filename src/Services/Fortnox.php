@@ -83,6 +83,16 @@ class Fortnox
     }
 
     /**
+     * Returns the inbox resource.
+     *
+     * @return \KFoobar\Fortnox\Resources\Invoice\Invoices
+     */
+    public function inboxes()
+    {
+        return new Inboxes($this->client);
+    }
+
+    /**
      * Returns the invoices resource.
      *
      * @return \KFoobar\Fortnox\Resources\Invoice\Invoices
