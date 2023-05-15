@@ -101,9 +101,10 @@ class Client implements ClientInterface
     }
 
     public function attach(string $endpoint, string $file, string $fileName): ClientInterface  {
-        $this->client->attach('File', file_get_contents($file), $fileName);
 
-        return $this;
+        $response = $this->client->attach('File', file_get_contents($file), $fileName)->post($endpoint);
+
+        return $response;
     }
 
     /**
