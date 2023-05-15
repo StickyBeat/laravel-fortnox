@@ -13,6 +13,7 @@ class FileAttachments
     public function __construct()
     {
         $this->client = new Client;
+        $this->client->baseUrl = config('fileattachments.host');
     }
 
     /**
