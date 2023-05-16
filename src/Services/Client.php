@@ -103,9 +103,7 @@ class Client implements ClientInterface
 
     public function attach(string $endpoint, string $file, string $fileName): mixed  {
 
-        Log::debug($this->client->baseUrl);
-
-        $response = $this->client->attach('File', file_get_contents($file), $fileName)->post($endpoint);
+        $response = $this->client->asForm()->attach('File', file_get_contents($file), $fileName)->post($endpoint);
 
         if ($response->failed()) {
             $this->catchError($response);
