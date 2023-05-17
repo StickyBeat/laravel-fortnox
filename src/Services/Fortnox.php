@@ -22,6 +22,7 @@ use KFoobar\Fortnox\Resources\Template\PrintTemplates;
 use KFoobar\Fortnox\Resources\Terms\TermsOfDeliveries;
 use KFoobar\Fortnox\Resources\Supplier\SupplierInvoices;
 use KFoobar\Fortnox\Resources\FinancialYear\FinancialYears;
+use KFoobar\Fortnox\Resources\Supplier\SupplierInvoiceFileConnections;
 
 class Fortnox
 {
@@ -151,6 +152,16 @@ class Fortnox
     public function supplierInvoices()
     {
         return new SupplierInvoices($this->client);
+    }
+
+    /**
+     * Returns the supplier invoices resource.
+     *
+     * @return \KFoobar\Fortnox\Resources\Supplier\SupplierInvoices
+     */
+    public function supplierInvoiceFileConnections()
+    {
+        return new SupplierInvoiceFileConnections($this->client);
     }
 
     /**
