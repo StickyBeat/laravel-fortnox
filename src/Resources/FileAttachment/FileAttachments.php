@@ -27,6 +27,7 @@ class FileAttachments implements ResourceInterface
      */
     public function attach(array $data): mixed
     {
+
       return $this->client->post($this->endpoint, $data);
     }
 }

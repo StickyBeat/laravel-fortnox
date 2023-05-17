@@ -39,6 +39,8 @@ class Inboxes implements ResourceInterface
             throw new \Exception('File does not exist');
         }
 
-        return $this->client->upload($this->endpoint, $file, $fileName);
+        $endpoint = sprintf('%s?path=%s', $this->endpoint, $path);
+
+        return $this->client->upload($endpoint, $file, $fileName);
     }
 }

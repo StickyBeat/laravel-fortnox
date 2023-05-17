@@ -128,6 +128,11 @@ class Client implements ClientInterface
         return $response;
     }
 
+    public function baseUrl(string $baseUrl): mixed
+    {
+        return $this->client->baseUrl($baseUrl);
+    }
+
     /**
      * Catch given error message from Fortnox.
      *
