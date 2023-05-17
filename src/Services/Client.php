@@ -2,10 +2,12 @@
 
 namespace KFoobar\Fortnox\Services;
 
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redis;
+use Psr\Http\Message\RequestInterface;
 use KFoobar\Fortnox\Interfaces\ClientInterface;
 use KFoobar\Fortnox\Exceptions\FortnoxException;
 
@@ -101,9 +103,23 @@ class Client implements ClientInterface
         return $response;
     }
 
-    public function attach(string $endpoint, string $file, string $fileName): mixed  {
+    public function upload(string $endpoint, string $file, string $fileName): mixed  {
 
-        $response = $this->client->asForm()->attach('File', file_get_contents($file), $fileName)->post($endpoint);
+        $response = $this->client
+        ->attach('file', file_get_contents($file), $fileName)
+        ->contentType('multipart/form-data')
+        ->withMiddleware(
+            Middleware::mapRequest(function (RequestInterface $request) {
+            $request = $request->withHeader(
+                'Content-type',
+                'multipart/form-data; boundary=' .
+                $request->getBody()->getBoundary()
+            );
+
+            return $request;
+            })
+        )
+        ->post($endpoint);
 
         if ($response->failed()) {
             $this->catchError($response);
