@@ -12,7 +12,7 @@ class PurgeTokensCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'fortnox:clear';
+    protected $signature = 'fortnox:clear {--force}';
 
     /**
      * The console command description.
@@ -28,7 +28,9 @@ class PurgeTokensCommand extends Command
      */
     public function handle()
     {
-        if (!$this->confirmAction()) {
+        $force = $this->argument('force');
+
+        if (!$this->confirmAction() && !$force ) {
             $this->components->info('Aborting...');
 
             return Command::SUCCESS;
