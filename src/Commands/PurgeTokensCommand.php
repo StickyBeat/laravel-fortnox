@@ -28,12 +28,14 @@ class PurgeTokensCommand extends Command
      */
     public function handle()
     {
-        $force = $this->argument('force');
+        $force = $this->option('force');
 
-        if (!$this->confirmAction() && !$force ) {
-            $this->components->info('Aborting...');
+        if (!$force) {
+            if (!$this->confirmAction()) {
+                $this->components->info('Aborting...');
 
-            return Command::SUCCESS;
+                return Command::SUCCESS;
+            }
         }
 
         try {
