@@ -39,5 +39,7 @@ class FortnoxServiceProvider extends ServiceProvider
                 RefreshTokensCommand::class,
             ]);
         }
+
+        $this->commands([PurgeTokensCommand::class, RefreshTokensCommand::class]);
     }
 }
